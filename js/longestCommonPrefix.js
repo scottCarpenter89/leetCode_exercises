@@ -4,11 +4,10 @@ Write a function to find the longest common prefix string amongst an array of st
 If there is no common prefix, return an empty string "".
 
 Example 1:
-
 Input: strs = ["flower","flow","flight"]
 Output: "fl"
-Example 2:
 
+Example 2:
 Input: strs = ["dog","racecar","car"]
 Output: ""
 Explanation: There is no common prefix among the input strings.
@@ -22,22 +21,18 @@ strs[i] consists of only lowercase English letters.
  */
 
 function longestCommonPrefix(stringArray) {
-    // input: an array of strings
-        // strategy: needs two loops, an inner loop and an outer one; if the inner index matches the outer index it
-            // joins the letter to a return variable
-    let longestPrefix = "";
-    for (let i = 0; i < stringArray.length; i++) {
-        let outerElement = stringArray[i];
-        for (let j = i + 1; j < stringArray.length; j++) {
-            let innerElement = stringArray[j];
-            if (outerElement === innerElement) {
-                longestPrefix += innerElement;
-            }
+
+    let prefix = stringArray[0];
+    for (let i = 1; i < stringArray.length; i++)
+        // index of will return 0 when two string become equal in value
+        while(stringArray[i].indexOf(prefix) !== 0) {
+            // this creates a new shallow copy of the current prefix and reduces each letter if the strings don't match
+            prefix = prefix.substring(0, prefix.length - 1);
         }
-    }
-    return longestPrefix;
-    // output: a string with the longest common prefix or an empty string
+    // when the strings are finally equivalent, the while loop breaks and returns the prefix
+    return prefix
 }
 
 console.log(longestCommonPrefix(["flower","flow","flight"]));
 console.log(longestCommonPrefix(["dog","racecar","car"]));
+console.log(longestCommonPrefix(['consequence', 'console', 'convoluted', 'contact']));
