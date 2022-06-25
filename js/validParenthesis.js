@@ -12,23 +12,23 @@
  */
 let isValid = function(s) {
     // input: a string of open/closed parenthetical characters
-        // the string must start with open brackets to be 'closed' and therefore true
-    if (s[0] !== '(' || s[0] !== '[' || s[0] !== '{') {
-        return false
-    }
+        // initial thoughts: the preceding string character must be an open bracket/curly/parenthesis to be true
 
     // iterate over the string starting at the index of 1 now
     for (let i = 1; i < s.length; i++) {
         if (s[i - 1] === '(' && s[i] !== ')') {
             return false;
-        } else if ((i - 1) !== '[' && i !== ']')
+        } else if (s[i - 1] === '[' && s[i] !== ']') {
+            return false;
+        } else if (s[i - 1] === '{' && s[i] !== '}') {
+            return false;
+        }
     }
-        // if the index at 1 is not the matched pair return false, otherwise continue
-
     // output: a boolean
     return true;
 };
 
-isValid('()');
-isValid('()[]{}');
-isValid('(]');
+console.log(isValid('()'));
+console.log(isValid('()[]{}'));
+console.log(isValid('(]'));
+console.log(isValid('][(){}'));
