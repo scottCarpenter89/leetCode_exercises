@@ -42,7 +42,7 @@ function romanToInt(romanNumeral) {
     if (romanNumeral.includes('CD') || romanNumeral.includes('CM')) {
         numericalResult -= 200;
     }
-    // loop over the array
+    // loop over the string
     for (let i = 0; i < romanNumeral.length; i++) {
         // create a switch with numerals corresponding to specific values
         switch (romanNumeral[i]) {
